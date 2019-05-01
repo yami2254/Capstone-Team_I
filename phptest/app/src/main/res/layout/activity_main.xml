@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+
+    tools:context=".MainActivity">
+
+    <TextView
+        android:id="@+id/textView_main_label"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:text="검색할 나라와 이름을 입력해주세요 . " />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/editText_main_searchKeyword1"
+            android:layout_width="0dp"
+            android:layout_weight="0.35"
+            android:hint="나라"
+            android:layout_height="match_parent" />
+
+        <EditText
+            android:id="@+id/editText_main_searchKeyword2"
+            android:layout_width="0dp"
+            android:layout_weight="0.35"
+            android:hint="이름"
+            android:layout_height="match_parent" />
+
+        <Button
+            android:id="@+id/button_main_search"
+            android:layout_width="0dp"
+            android:layout_weight="0.3"
+            android:layout_height="match_parent"
+            android:text="Search" />
+    </LinearLayout>
+
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.4"
+        android:id="@+id/listView_main_list"/>
+
+    <TextView
+        android:id="@+id/textView_main_result"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.4" />
+</LinearLayout>
