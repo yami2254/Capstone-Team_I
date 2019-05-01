@@ -23,14 +23,14 @@
             android:id="@+id/editText_main_searchKeyword1"
             android:layout_width="0dp"
             android:layout_weight="0.35"
-            android:hint="나라"
+            android:hint="학번"
             android:layout_height="match_parent" />
 
         <EditText
             android:id="@+id/editText_main_searchKeyword2"
             android:layout_width="0dp"
             android:layout_weight="0.35"
-            android:hint="이름"
+            android:hint="비밀번호"
             android:layout_height="match_parent" />
 
         <Button
