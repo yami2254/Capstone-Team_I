@@ -9,28 +9,18 @@
         android:layout_height="50dp"
         android:background="@drawable/background"
         android:orientation="horizontal">
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="horizontal"
-        android:layout_weight="4">
+
         <Button
-            android:layout_width="50dp"
+            android:layout_width="60dp"
             android:layout_height="match_parent"
-            android:background="@drawable/mypage"
-            android:layout_gravity="center_horizontal"
-            android:paddingLeft="10dp"
-            android:layout_marginLeft="10dp"
+
             />
-    </LinearLayout>
+
         <TextView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:layout_gravity="center_vertical|center_horizontal"
-            android:paddingRight="20dp"
-            android:layout_marginLeft="10dp"
-            android:paddingTop="10dp"
+            android:gravity="center"
+            android:paddingRight="30dp"
             android:text="스터디룸 예약시스템"
             android:textColor="#ffffffff"
             android:textSize="24dp" />

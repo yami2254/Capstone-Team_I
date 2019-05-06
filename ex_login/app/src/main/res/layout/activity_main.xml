@@ -63,6 +63,8 @@
             android:layout_toRightOf="@id/usernameLabel"
             android:layout_alignBaseline="@id/usernameLabel"
             android:layout_marginLeft="4dp"
+            android:singleLine="true"
+            android:nextFocusDown="@+id/passwordEntry"
             />
 
         <TextView
@@ -84,6 +86,7 @@
             android:layout_toRightOf="@id/passwordLabel"
             android:layout_alignBaseline="@id/passwordLabel"
             android:inputType="textPassword"
+            android:singleLine="true"
 
             />
         <LinearLayout
