@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="100dp"
+    android:orientation="vertical"
+    android:background="@drawable/layer_draw">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/room_num"
+        android:textColor="#000000"
+        android:paddingTop="5dp"
+        android:text="1"
+        android:paddingLeft="5dp"
+
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/room_name"
+        android:layout_toRightOf="@+id/room_num"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"
+        android:textColor="#000000"
+        android:textSize="15dp"
+        android:text="name"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/room_time"
+        android:textColor="#000000"
+        android:text="10:00 ~ 00:00"
+        android:paddingBottom="10dp"
+        android:layout_below="@+id/room_name"
+        android:layout_alignLeft="@+id/room_name"
+        android:textSize="10dp"
+        />
+
+</RelativeLayout>
