@@ -8,12 +8,32 @@
 
     <TextView
         android:id="@+id/tvld"
-        android:layout_width="9dp"
-        android:layout_height="12dp"
+        android:layout_width="75dp"
+        android:layout_height="67dp"
         android:text="hello"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.119"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.186" />
+
+    <Button
+        android:id="@+id/btt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="38dp"
+        android:layout_marginTop="35dp"
+        android:text="Button"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/testtv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        app:layout_constraintStart_toStartOf="@+id/tvld"
+        app:layout_constraintTop_toBottomOf="@+id/tvld" />
 
 </android.support.constraint.ConstraintLayout>
