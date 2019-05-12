@@ -51,28 +51,31 @@ import java.util.Vector;
 
 public class SearchActivity extends Activity {
 
+    final SimpleDateFormat today = new SimpleDateFormat("yyyyMMdd");
+    Date date = new Date();
+    String todaydate = today.format(date);
+
     private  int flag = 0;
     boolean r_flag = true;
     CalendarView calendarView;
     Button todaybtn;
     Button f_strudy_room;
     Button strudy_room;
-    Date date = new Date();
-    String todaydate;
     String sic;
     Spinner loc_spinner,start_spinner,use_spinner,people_spinner;
+    int sendcount = 0;
     public static final int REQUEST_CODE_ANOTHER = 1001;
     int request_code;
     Intent intent;
     public static int selcolor = Color.rgb(157 , 157, 233);
     public static int nonscolor = Color.rgb(0, 0   , 0);
-    String loc;
-    String start;
-    String people;
-    String use;
+    String loc = "전체";
+    String start= "전체";
+    String people= "전체";
+    String use = "전체";
 
-    private RecyclerViewAdapter adapter;
-    private final String urlPath = "http://interface518.dothome.co.kr/caps/login.php";
+    RecyclerView recyclerView;
+    private RecyclerViewAdapter adapter= new RecyclerViewAdapter();
 
 
     @SuppressLint("ResourceType")
@@ -82,10 +85,12 @@ public class SearchActivity extends Activity {
 
         setContentView(R.layout.seach);
 
-        final RecyclerView recyclerView = findViewById(R.id.Study_room_RecyclerView);
+        recyclerView = findViewById(R.id.Study_room_RecyclerView);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(linearLayoutManager);
-        adapter = new RecyclerViewAdapter();
+
+
+        new HttpTask().execute();
 
        // 꽁터디룸,스터디룸 버튼
         f_strudy_room = (Button)findViewById(R.id.Freestudy);
@@ -122,15 +127,13 @@ public class SearchActivity extends Activity {
         String[] start_array = {"전체","00시","01시","02시","03시","04시","05시","06시","07시","08시","09시","10시","11시","12시","13시",
                 "14시","15시","16시","17시","18시","19시","20시","21시","22시","23시","24시"};
         String[] use_array = {"전체","1시간","2시간"};
-       // String[] people_array = {"2~4","2~5","3~6","3~8","4~8","4~9","5~10","9~32"};
             String[] people_array = {"전체","2명","3명","4명","5명","6명","7명","8명","9명","10~"};
 
 
 
 
             //날짜
-        final SimpleDateFormat today = new SimpleDateFormat("yyyyMMdd");
-        todaydate = today.format(date);
+
         loc_spinner = (Spinner)findViewById(R.id.location);
         start_spinner = (Spinner)findViewById(R.id.starttime);
         use_spinner = (Spinner)findViewById(R.id.usetime);
@@ -156,33 +159,21 @@ public class SearchActivity extends Activity {
 
 
 
-        List<String> study_roomArr = Arrays.asList("aa","ba","ca","aa","ba","ca");
-        List<String> study_roomTime = Arrays.asList("ad","bd","cd","ad","bd","cd");
-        List<String> study_roomNum = Arrays.asList("11","21","31","41","51","16");
 
-
-        for (int i = 0; i < study_roomArr.size(); i++) {
-            // 각 List의 값들을 data 객체에 set 해줍니다.
-            study_list data = new study_list();
-            data.setNum(study_roomNum.get(i));
-            data.setName(study_roomArr.get(i));
-            data.setTime(study_roomTime.get(i));
-
-            adapter.addItem(data);
-        }
 
         //adapter = new RecyclerViewAdapter(study_roomArr);
         loc_spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 loc = (String)loc_spinner.getSelectedItem();
-                new HttpTask().execute();
+                if(sendcount >3)
+                    new HttpTask().execute();
+                sendcount++;
             }
 
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
                 loc = "전체";
-                new HttpTask().execute();
             }
         });
 
@@ -190,14 +181,14 @@ public class SearchActivity extends Activity {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 start = (String)start_spinner.getSelectedItem();
-                new HttpTask().execute();
-
+                if(sendcount >3)
+                    new HttpTask().execute();
+                sendcount++;
             }
 
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
                 start = "전체";
-                new HttpTask().execute();
             }
         });
 
@@ -205,13 +196,13 @@ public class SearchActivity extends Activity {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 use = (String)use_spinner.getSelectedItem();
-                new HttpTask().execute();
-
+                if(sendcount >3)
+                    new HttpTask().execute();
+                sendcount++;
             }
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
                 use = "전체";
-                new HttpTask().execute();
             }
         });
 
@@ -219,12 +210,13 @@ public class SearchActivity extends Activity {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 people = (String)people_spinner.getSelectedItem();
-                new HttpTask().execute();
+                if(sendcount >3)
+                    new HttpTask().execute();
+                sendcount++;
             }
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
                 people = "전체";
-                new HttpTask().execute();
             }
         });
 
@@ -262,6 +254,9 @@ public class SearchActivity extends Activity {
         }
 
     class HttpTask extends AsyncTask<Void, Void, String> {
+
+
+        private final String urlPath = "http://interface518.dothome.co.kr/caps/ajax.php?cdate="+todaydate;
 
         @Override
         protected String doInBackground(Void... voids) {
@@ -316,6 +311,28 @@ public class SearchActivity extends Activity {
         //ui는 여기서 변경
         protected void onPostExecute(String value){
             super.onPostExecute(value);
+
+            System.out.println(value);
+            List<String> study_roomArr = Arrays.asList("aa","ba","ca","aa","ba","ca");
+            List<String> study_roomTime = Arrays.asList("ad","bd","cd","ad","bd","cd");
+            List<String> study_roomNum = Arrays.asList("11","21","31","41","51","16");
+            List<String> study_roomTimestart = Arrays.asList("10","10","09","09","00","00");
+            List<String> study_roomTimeend = Arrays.asList("18","18","20","20","24","24");
+
+
+            for (int i = 0; i < study_roomArr.size(); i++) {
+                // 각 List의 값들을 data 객체에 set 해줍니다.
+                study_list data = new study_list();
+                data.setNum(study_roomNum.get(i));
+                data.setName(study_roomArr.get(i));
+                data.setTime(study_roomTime.get(i));
+                data.setTimestart(study_roomTimestart.get(i));
+                data.setTimeend(study_roomTimeend.get(i));
+
+                adapter.addItem(data);
+            }
+
+            recyclerView.setAdapter(adapter);
 
         }
     }

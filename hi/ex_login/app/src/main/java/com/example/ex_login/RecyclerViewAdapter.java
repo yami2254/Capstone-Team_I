@@ -47,19 +47,25 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         private TextView textView1;
         private TextView textView2;
         private TextView textView3;
-
+        private TextView textView4;
+        private TextView textView5;
         ItemViewHolder(View itemView) {
             super(itemView);
 
             textView1 = itemView.findViewById(R.id.room_name);
             textView2 = itemView.findViewById(R.id.room_num);
             textView3 = itemView.findViewById(R.id.room_time);
+            textView4 = itemView.findViewById(R.id.timetable);
+            textView5 = itemView.findViewById(R.id.timetablenum);
+
         }
 
         void onBind(study_list data) {
             textView1.setText(data.getName());
             textView2.setText(data.getNum());
             textView3.setText(data.getTime());
+            textView4.setText(data.getTimetable());
+            textView5.setText(data.getTimenum());
         }
     }
 }
