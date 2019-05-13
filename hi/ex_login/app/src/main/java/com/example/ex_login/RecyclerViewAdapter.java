@@ -1,10 +1,13 @@
 package com.example.ex_login;
 
+import android.graphics.Color;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TableLayout;
+import android.widget.TableRow;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -40,32 +43,74 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         listData.add(data);
     }
 
+    public void clear()
+    {
+        listData.clear();
+    }
     // RecyclerView의 핵심인 ViewHolder 입니다.
     // 여기서 subView를 setting 해줍니다.
     class ItemViewHolder extends RecyclerView.ViewHolder {
+
 
         private TextView textView1;
         private TextView textView2;
         private TextView textView3;
         private TextView textView4;
-        private TextView textView5;
+        private TextView[] tablev;
+
+
         ItemViewHolder(View itemView) {
             super(itemView);
 
             textView1 = itemView.findViewById(R.id.room_name);
             textView2 = itemView.findViewById(R.id.room_num);
             textView3 = itemView.findViewById(R.id.room_time);
-            textView4 = itemView.findViewById(R.id.timetable);
-            textView5 = itemView.findViewById(R.id.timetablenum);
-
+            textView4 = itemView.findViewById(R.id.textpeople);
+            tablev = new TextView[]{
+                    itemView.findViewById(R.id.tableV1),
+                    itemView.findViewById(R.id.tableV2),
+                    itemView.findViewById(R.id.tableV3),
+                    itemView.findViewById(R.id.tableV4),
+                    itemView.findViewById(R.id.tableV5),
+                    itemView.findViewById(R.id.tableV6),
+                    itemView.findViewById(R.id.tableV7),
+                    itemView.findViewById(R.id.tableV8),
+                    itemView.findViewById(R.id.tableV9),
+                    itemView.findViewById(R.id.tableV10),
+                    itemView.findViewById(R.id.tableV11),
+                    itemView.findViewById(R.id.tableV12),
+                    itemView.findViewById(R.id.tableV13),
+                    itemView.findViewById(R.id.tableV14),
+                    itemView.findViewById(R.id.tableV15),
+                    itemView.findViewById(R.id.tableV16),
+                    itemView.findViewById(R.id.tableV17),
+                    itemView.findViewById(R.id.tableV18),
+                    itemView.findViewById(R.id.tableV19),
+                    itemView.findViewById(R.id.tableV20),
+                    itemView.findViewById(R.id.tableV21),
+                    itemView.findViewById(R.id.tableV22),
+                    itemView.findViewById(R.id.tableV23),
+                    itemView.findViewById(R.id.tableV24),
+            };
         }
 
         void onBind(study_list data) {
+
             textView1.setText(data.getName());
             textView2.setText(data.getNum());
             textView3.setText(data.getTime());
-            textView4.setText(data.getTimetable());
-            textView5.setText(data.getTimenum());
+            textView4.setText(data.getPeople());
+            ArrayList<String> list = data.getReserveL();
+
+            for (int j = 0; j < data.getTimestart(); j++) {
+                    tablev[j].setBackgroundColor(Color.BLACK);
+            }
+            for (int k = data.getTimeend()+1; k < 24; k++){
+                tablev[k].setBackgroundColor(Color.BLACK);
+            }
+            for (int i = 0; i < list.size(); i++) {
+                tablev[Integer.parseInt(list.get(i))].setBackgroundColor(Color.YELLOW);
+            }
         }
     }
 }

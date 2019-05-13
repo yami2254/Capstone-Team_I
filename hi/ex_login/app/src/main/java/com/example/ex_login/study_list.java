@@ -1,15 +1,21 @@
 package com.example.ex_login;
 
+import android.widget.TextView;
+
+import org.w3c.dom.Text;
+
+import java.util.ArrayList;
+
 public class study_list {
 
     private String name;
     private  String time;
     private String num;
-    private String timetable ="";
+    private String people;
     private int timestart;
     private int timeend;
-    private String timenum ="";
 
+    private ArrayList<String> reserveL = new ArrayList<String>();
 
 
 
@@ -20,18 +26,24 @@ public class study_list {
     public void setTimeend(String timeend) {
         this.timeend = Integer.parseInt(timeend);
     }
-    public void setTimestart(String timestart) {
-        this.timestart = Integer.parseInt(timestart);
-        ;
-    }
-    public void setTime(String time) {
-        this.time = time;
-    }
+    public void setTimestart(String timestart) { this.timestart = Integer.parseInt(timestart); }
+    public void setTime(String time) { this.time = time; }
     public void setNum(String num) {
         this.num = num;
     }
+    public void setPeople(String people) { this.people = people;}
+    public void setReserveL (String a)
+    {
+        this.reserveL.add(a);
+    }
 
-
+    public String getPeople() { return  people;}
+    public int getTimestart(){
+        return timestart;
+    }
+    public int getTimeend(){
+        return timeend;
+    }
     public String getName(){
         return name;
     }
@@ -39,20 +51,5 @@ public class study_list {
         return time;
     }
     public String getNum() { return num; }
-    public String getTimenum()
-    {
-        for (int i = 0; i < timeend-timestart;i++)
-        {
-            timenum += (i+1)+ " ";
-        }
-        return timenum;
-    }
-    public String getTimetable()
-    {
-        for (int i = 0; i < timeend-timestart;i++)
-        {
-            timetable += "ㅁ ";
-        }
-        return timetable;
-    }
+    public ArrayList getReserveL() {return reserveL;}
 }
