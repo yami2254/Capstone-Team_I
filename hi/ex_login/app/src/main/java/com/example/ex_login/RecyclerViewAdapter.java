@@ -1,6 +1,7 @@
 package com.example.ex_login;
 
 import android.graphics.Color;
+import android.icu.lang.UScript;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -57,7 +58,9 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         private TextView textView3;
         private TextView textView4;
         private TextView[] tablev;
-
+        private TableRow tabler1;
+        private TableRow tabler2;
+        private TableLayout tableL;
 
         ItemViewHolder(View itemView) {
             super(itemView);
@@ -66,6 +69,10 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
             textView2 = itemView.findViewById(R.id.room_num);
             textView3 = itemView.findViewById(R.id.room_time);
             textView4 = itemView.findViewById(R.id.textpeople);
+            tabler1 = itemView.findViewById(R.id.tableR1);
+            tabler2 = itemView.findViewById(R.id.tableR2);
+            tableL = itemView.findViewById(R.id.tableL);
+
             tablev = new TextView[]{
                     itemView.findViewById(R.id.tableV1),
                     itemView.findViewById(R.id.tableV2),
@@ -100,17 +107,22 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
             textView2.setText(data.getNum());
             textView3.setText(data.getTime());
             textView4.setText(data.getPeople());
+
             ArrayList<String> list = data.getReserveL();
 
+            for(int i=data.getTimestart();i <=data.getTimeend();i++) {
+                tablev[i].setBackgroundColor(Color.WHITE);
+            }
             for (int j = 0; j < data.getTimestart(); j++) {
                     tablev[j].setBackgroundColor(Color.BLACK);
             }
-            for (int k = data.getTimeend()+1; k < 24; k++){
+            for (int k = data.getTimeend()+1; k < 24 ; k++){
                 tablev[k].setBackgroundColor(Color.BLACK);
             }
             for (int i = 0; i < list.size(); i++) {
                 tablev[Integer.parseInt(list.get(i))].setBackgroundColor(Color.YELLOW);
             }
+
         }
     }
 }

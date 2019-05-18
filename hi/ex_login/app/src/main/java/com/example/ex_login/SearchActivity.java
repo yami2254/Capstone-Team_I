@@ -129,9 +129,9 @@ public class SearchActivity extends Activity {
         // 필터링 스피너
         String[] loc_array = {"전체","학술정보원-7F","학술정보원-4F","학술정보원-2F","학술정보원-1F","진관"};
         String[] start_array = {"전체","00시","01시","02시","03시","04시","05시","06시","07시","08시","09시","10시","11시","12시","13시",
-                "14시","15시","16시","17시","18시","19시","20시","21시","22시","23시","24시"};
+                "14시","15시","16시","17시","18시","19시","20시","21시","22시","23시"};
         String[] use_array = {"전체","1시간","2시간"};
-            String[] people_array = {"전체","2","3","4","5","6","7","8","9","10~"};
+        String[] people_array = {"전체","2","3","4","5","6","7","8","9","10~"};
 
 
 
@@ -260,7 +260,7 @@ public class SearchActivity extends Activity {
     class HttpTask extends AsyncTask<Void, Void, String> {
 
 
-        private final String urlPath = "http://interface518.dothome.co.kr/caps/fillter.php?cdate="+todaydate;
+        private final String urlPath = "http://interface518.dothome.co.kr/caps/fillter.php?cdate="+"20190515";
 
         @Override
         protected String doInBackground(Void... voids) {
@@ -327,6 +327,11 @@ public class SearchActivity extends Activity {
                 reservejsonlist(value);
                 recyclerView.setAdapter(adapter);
             }
+            else
+            {
+
+                Toast.makeText(SearchActivity.this,"서버문제야 씨발",Toast.LENGTH_SHORT).show();
+            }
 
 
         }
@@ -346,11 +351,20 @@ public class SearchActivity extends Activity {
         String R_starttime = null;
         String R_usetime = null;
 
+        boolean flag = true;
+        boolean flaguse = true;
+        int flagusenum = 0;
+        int temp;
 
         try {
 
             JSONArray jarray = new JSONObject(jsonString).getJSONArray("room");
             for (int i = 0; i < jarray.length(); i++) {
+
+                flag = true;
+                flaguse = true;
+                flagusenum = 0;
+
                 JSONObject jObject = jarray.getJSONObject(i);
 
                 SR_id = jObject.optString("SR_id");
@@ -363,58 +377,97 @@ public class SearchActivity extends Activity {
                 S_NowReservate = jObject.optString("S_NowReservate");
                 reserv = jObject.optString("reserv");
 
-                study_list data = new study_list();
+                start = start.replace("시", "");
+                if (start.equals("전체")||Integer.parseInt(start) > Integer.parseInt(SR_starttime) - 1 &&
+                        Integer.parseInt(start) < Integer.parseInt(SR_endtime) + 1
+                &&!(Integer.parseInt(start) == Integer.parseInt(SR_endtime)&&use.equals("2시간"))) {
+                    study_list data = new study_list();
 
+                    if (reserv.length() != 4) {
+                        System.out.println(reserv);
+                        if (reserv.charAt(reserv.length() - 1) == ']') {
+                            reserv += "}";
+                        }
+                        String reservjo = "{\"res\":" + reserv;
+                        System.out.println(reservjo);
 
-                data.setName(SR_place); //스터디룸 장소 이름
+                        JSONArray ja = new JSONObject(reservjo).getJSONArray("res");
 
-                data.setNum(SR_id);  //스터디룸 식별 번호
+                        for (int j = 0; j < ja.length(); j++) {
+                            JSONObject jO = ja.getJSONObject(j);
 
-                data.setPeople(SR_minperson+"명 ~ "+SR_maxperson+"명");
+                            R_starttime = jO.optString("R_starttime");
+                            R_usetime = jO.optString("R_usetime");
 
-                data.setTime(SR_starttime+ ":00 ~ " + SR_endtime+":00");
-
-                data.setTimestart(SR_starttime);
-
-                data.setTimeend(SR_endtime);
-
-                if(reserv.length() != 4) {
-                    System.out.println(reserv);
-                    if(reserv.charAt(reserv.length()-1) == ']')
-                    {
-                        reserv +="}";
-                    }
-                    String reservjo = "{\"res\":" + reserv;
-                    System.out.println(reservjo);
-
-                    JSONArray ja = new JSONObject(reservjo).getJSONArray("res");
-
-                    for (int j = 0; j < ja.length(); j++) {
-                        JSONObject jO = ja.getJSONObject(j);
-
-                        R_starttime = jO.optString("R_starttime");
-                        R_usetime = jO.optString("R_usetime");
-
-                        data.setReserveL(R_starttime);
-                        if(R_usetime.equals("2"))
-                        {
-                            data.setReserveL(String.valueOf(Integer.parseInt(R_starttime)+1));
+                            data.setReserveL(R_starttime);
+                            if (R_usetime.equals("2")) {
+                                data.setReserveL(String.valueOf(Integer.parseInt(R_starttime) + 1));
+                            }
                         }
                     }
-                }
-                adapter.addItem(data);
 
-                /*1111
-                arraysum[0] = SR_id;
-                arraysum[1] = SR_place;
-                arraysum[2] = SR_starttime;
-                arraysum[3] = SR_endtime;
-                arraysum[4] = SR_minperson;
-                arraysum[5] = SR_maxperson;
-                arraysum[6] = SR_beacon;
-                arraysum[7] = S_NowReservate;
-                arraysum[8] = reserv;
-                */
+                    ArrayList<String> list = data.getReserveL();
+                    if (!start.equals("전체")) {
+                        start = start.replace("시", "");
+                        if (use.equals("1시간")) {
+                            if (list.indexOf(start) != -1) {
+                                flag = false;
+                            }
+
+                        } else if (use.equals("2시간")) {
+                            if (list.indexOf(start) != -1 || list.indexOf(String.valueOf(Integer.parseInt(start) + 1)) != -1) {
+                                flag = false;
+                            }
+                        }
+                    } else {
+                        if (use.equals("1시간")) {
+                            temp = Integer.parseInt(SR_starttime) - 1;
+                            for (int n = 0; n < list.size(); n++) {
+                                if (Integer.parseInt(list.get(n)) - temp > 1) {
+                                    break;
+                                }
+                                temp = Integer.parseInt(list.get(n));
+                                if (n == list.size() - 1) {
+                                    if (Integer.parseInt(SR_endtime) + 1 - Integer.parseInt(list.get(n)) < 2) {
+                                        flaguse = false;
+                                    }
+                                }
+                            }
+                        } else if (use.equals("2시간")) {
+                            temp = Integer.parseInt(SR_starttime) - 1;
+                            for (int n = 0; n < list.size(); n++) {
+                                if (Integer.parseInt(list.get(n)) - temp > 2) {
+                                    break;
+                                }
+                                temp = Integer.parseInt(list.get(n));
+                                if (n == list.size() - 1) {
+                                    if (Integer.parseInt(SR_endtime) + 1 - Integer.parseInt(list.get(n)) < 3) {
+                                        flaguse = false;
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+
+                    if (flag == true && flaguse == true) {
+                        data.setName(SR_place); //스터디룸 장소 이름
+
+                        data.setNum(SR_id);  //스터디룸 식별 번호
+
+                        data.setPeople(SR_minperson + "명 ~ " + SR_maxperson + "명");
+
+                        data.setTime(SR_starttime + ":00 ~ " + SR_endtime + ":00");
+
+                        data.setTimestart(SR_starttime);
+
+                        data.setTimeend(SR_endtime);
+
+                        adapter.addItem(data);
+                    }
+                }
+                adapter.notifyDataSetChanged();
+
             }
         } catch (JSONException e) {
             e.printStackTrace();
