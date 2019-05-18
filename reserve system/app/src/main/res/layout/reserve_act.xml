@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@drawable/background"
+        android:orientation="horizontal">
+        <LinearLayout
+
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:layout_weight="4">
+            <Button
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:background="@drawable/mypage"
+                android:layout_gravity="center_horizontal|center_vertical"
+                android:padding="10dp"
+                android:layout_marginLeft="10dp"
+                android:id="@+id/mypage"
+                />
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_vertical|center_horizontal"
+            android:layout_marginLeft="10dp"
+            android:layout_weight="1"
+            android:paddingTop="10dp"
+            android:paddingRight="20dp"
+            android:text="스터디룸 예약시스템"
+            android:textColor="#ffffffff"
+            android:textSize="24dp" />
+
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:text="스터디룸 정보"
+        android:textColor="#000000"
+        android:gravity="center_vertical|center_horizontal"
+        android:background="@drawable/layer_draw"
+        />
+    <RelativeLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:orientation="vertical"
+        android:background="@drawable/layer_draw">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/Act_reserve_roomnum"
+            android:textColor="#000000"
+            android:paddingTop="5dp"
+            android:text="1"
+            android:paddingLeft="5dp"
+
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/Act_reserve_roomname"
+            android:layout_toRightOf="@+id/Act_reserve_roomnum"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"
+            android:textColor="#000000"
+            android:textSize="15dp"
+            android:text="name"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/Act_reserve_roomtime"
+            android:textColor="#000000"
+
+            android:paddingBottom="10dp"
+            android:layout_below="@+id/Act_reserve_roomname"
+            android:layout_alignLeft="@+id/Act_reserve_roomname"
+            android:textSize="12dp"
+
+            />
+
+
+    </RelativeLayout>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:text="이용시간 선택"
+        android:textColor="#000000"
+        android:gravity="center_vertical|center_horizontal"
+        android:background="@drawable/layer_draw"
+        />
+
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="60dp"
+    android:orientation="horizontal"
+    android:background="@drawable/layer_draw">
+
+
+</LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:background="@drawable/layer_draw">
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:text="동반이용자(본인 제외)"
+        android:textColor="#000000"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:gravity="center_horizontal|center_vertical"
+        android:id="@+id/textpartner"
+        />
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        />
+
+    </RelativeLayout>
+
+    <android.support.v7.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="100dp">
+
+    </android.support.v7.widget.RecyclerView>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:text="사용목적"
+        android:textColor="#000000"
+        android:gravity="center_vertical|center_horizontal"
+        android:background="@drawable/layer_draw"
+        />
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:padding="10dp"
+        android:layout_margin="10dp"
+        android:background="@drawable/layer_full"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        android:gravity="center_horizontal|center_vertical"
+        android:layout_marginBottom="10dp"
+        >
+        <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="예약"
+        android:layout_gravity="center_vertical|center_horizontal"
+            android:layout_marginRight="10dp"
+            android:id="@+id/Act_reserve_btn"
+            />
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="취소"
+            android:id="@+id/Act_reserve_canclebtn"
+            android:layout_gravity="center_vertical|center_horizontal"
+            android:layout_marginLeft="10dp"/>
+
+    </LinearLayout>
+
+
+</LinearLayout>

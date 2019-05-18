@@ -1,18 +1,17 @@
 package com.example.ex_login;
 
-import android.annotation.SuppressLint;
-import android.app.Activity;
-import android.content.Intent;
-import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
-import android.widget.CalendarView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -23,8 +22,7 @@ import org.apache.http.client.HttpClient;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.DefaultHttpClient;
-import org.apache.http.message.BasicNameValuePair;
-import org.json.JSONArray;
+import org.apache.http.message.BasicNameValuePair;import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -33,85 +31,34 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.Vector;
 
-
-public class SearchActivity extends Activity {
-
-    final SimpleDateFormat today = new SimpleDateFormat("yyyyMMdd");
-    Date date = new Date();
-    String todaydate = today.format(date);
-
-    private  int flag = 0;
-    boolean r_flag = true;
-    CalendarView calendarView;
-    Button todaybtn;
-    Button f_strudy_room;
-    Button strudy_room;
-    String sic;
+public class Studyroom_Fragment extends Fragment {
     Spinner loc_spinner,start_spinner,use_spinner,people_spinner;
-    int sendcount = 0;
-    public static final int REQUEST_CODE_ANOTHER = 1001;
-    int request_code;
-    Intent intent;
-    public static int selcolor = Color.rgb(157 , 157, 233);
-    public static int nonscolor = Color.rgb(0, 0   , 0);
+
+    private  RecyclerView.LayoutManager layoutManager;
+    ArrayList<study_list> study_roomArr = null;
     String loc = "전체";
     String start= "전체";
     String people= "전체";
     String use = "전체";
-
+    int sendcount = 0;
     RecyclerView recyclerView;
     private RecyclerViewAdapter adapter= new RecyclerViewAdapter();
 
-
-    @SuppressLint("ResourceType")
-        public void onCreate(Bundle savedInstanceState) {
-
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        setContentView(R.layout.seach);
-
-        recyclerView = findViewById(R.id.Study_room_RecyclerView);
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
-        recyclerView.setLayoutManager(linearLayoutManager);
-
-
-        new HttpTask().execute();
-
-       // 꽁터디룸,스터디룸 버튼
-        f_strudy_room = (Button)findViewById(R.id.Freestudy);
-        strudy_room = (Button)findViewById(R.id.Study);
-        f_strudy_room.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if(r_flag == true)
-                {
-                 r_flag = false;
-                 f_strudy_room.setBackgroundResource(R.drawable.selected);
-                 strudy_room.setBackgroundResource(R.drawable.nonselect);
-                 f_strudy_room.setTextColor(selcolor);
-                 strudy_room.setTextColor(nonscolor);
-                }
-            }
-        });
-        strudy_room.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if(r_flag == false)
-                {   r_flag = true;
-                    strudy_room.setBackgroundResource(R.drawable.selected);
-                    f_strudy_room.setBackgroundResource(R.drawable.nonselect);
-                    f_strudy_room.setTextColor(nonscolor);
-                    strudy_room.setTextColor(selcolor);
-
-                }
-            }
-        });
-
+    }
+    @Nullable
+    @Override
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        View view = (View)inflater.inflate(R.layout.studyroom,container,false);
+        loc_spinner = (Spinner)view.findViewById(R.id.location);
+        start_spinner = (Spinner)view.findViewById(R.id.starttime);
+        use_spinner = (Spinner)view.findViewById(R.id.usetime);
+        people_spinner = (Spinner)view.findViewById(R.id.people);
         // 필터링 스피너
         String[] loc_array = {"전체","학술정보원-7F","학술정보원-4F","학술정보원-2F","학술정보원-1F","진관"};
         String[] start_array = {"전체","00시","01시","02시","03시","04시","05시","06시","07시","08시","09시","10시","11시","12시","13시",
@@ -119,19 +66,10 @@ public class SearchActivity extends Activity {
         String[] use_array = {"전체","1시간","2시간"};
         String[] people_array = {"전체","2","3","4","5","6","7","8","9","10~"};
 
-
-
-
-            //날짜
-
-        loc_spinner = (Spinner)findViewById(R.id.location);
-        start_spinner = (Spinner)findViewById(R.id.starttime);
-        use_spinner = (Spinner)findViewById(R.id.usetime);
-        people_spinner = (Spinner)findViewById(R.id.people);
-        ArrayAdapter<String> location_adapter = new ArrayAdapter<String>(this,R.layout.spinner_item,loc_array);
-        ArrayAdapter<String> start_adapter = new ArrayAdapter<String>(this,R.layout.spinner_item,start_array);
-        ArrayAdapter<String> use_adpter = new ArrayAdapter<String>(this,R.layout.spinner_item,use_array);
-        ArrayAdapter<String> people_adapter = new ArrayAdapter<String>(this,R.layout.spinner_item,people_array);
+        ArrayAdapter<String> location_adapter = new ArrayAdapter<String>(getActivity(),R.layout.spinner_item,loc_array);
+        ArrayAdapter<String> start_adapter = new ArrayAdapter<String>(getActivity(),R.layout.spinner_item,start_array);
+        ArrayAdapter<String> use_adpter = new ArrayAdapter<String>(getActivity(),R.layout.spinner_item,use_array);
+        ArrayAdapter<String> people_adapter = new ArrayAdapter<String>(getActivity(),R.layout.spinner_item,people_array);
         loc_spinner.setAdapter(location_adapter);
         loc_spinner.setSelection(0);
         loc_spinner.setGravity(View.TEXT_ALIGNMENT_CENTER);
@@ -148,18 +86,22 @@ public class SearchActivity extends Activity {
 
 
 
+        recyclerView = (RecyclerView)view.findViewById(R.id.Study_room_RecyclerView);
+        layoutManager = new LinearLayoutManager(getActivity());
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setLayoutManager(layoutManager);
 
-
+        //adapter = new RecyclerViewAdapter(study_roomArr);
 
         //adapter = new RecyclerViewAdapter(study_roomArr);
         loc_spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
-           public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 loc = (String)loc_spinner.getSelectedItem();
                 if(sendcount >3)
                     new HttpTask().execute();
                 sendcount++;
-        }
+            }
 
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
@@ -210,38 +152,8 @@ public class SearchActivity extends Activity {
             }
         });
 
-        todaybtn = (Button) findViewById(R.id.today);
-        todaybtn.setText(todaydate);
-       /* if(sic == null) {
-            todaybtn.setText(todaydate);
-        }
-        else {
-            todaydate=intent.getExtras().getString("change");
-            todaybtn.setText(todaydate);
-        }*/
-        todaybtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                intent = new Intent(getApplicationContext(),Sub_CalendarActivity.class);
-                  startActivityForResult(intent,REQUEST_CODE_ANOTHER);
-
-                }
-        });
-
-        }
-
-
-        protected void onActivityResult(int request_code,int resultCode, Intent intent)
-        {
-            super.onActivityResult(request_code,resultCode,intent);
-            if(resultCode == RESULT_OK)
-            {
-                String rechange = intent.getExtras().getString("change");
-                todaybtn.setText(rechange);
-            }
-
-
-        }
+        return view;
+    }
 
     class HttpTask extends AsyncTask<Void, Void, String> {
 
@@ -316,13 +228,11 @@ public class SearchActivity extends Activity {
             else
             {
 
-                Toast.makeText(SearchActivity.this,"서버문제야 씨발",Toast.LENGTH_SHORT).show();
             }
 
 
         }
     }
-
     public void reservejsonlist(String jsonString) {
 
         String SR_id = null;
@@ -366,7 +276,7 @@ public class SearchActivity extends Activity {
                 start = start.replace("시", "");
                 if (start.equals("전체")||Integer.parseInt(start) > Integer.parseInt(SR_starttime) - 1 &&
                         Integer.parseInt(start) < Integer.parseInt(SR_endtime) + 1
-                &&!(Integer.parseInt(start) == Integer.parseInt(SR_endtime)&&use.equals("2시간"))) {
+                        &&!(Integer.parseInt(start) == Integer.parseInt(SR_endtime)&&use.equals("2시간"))) {
                     study_list data = new study_list();
 
                     if (reserv.length() != 4) {

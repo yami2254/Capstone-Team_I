@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@drawable/background"
+        >
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/mypage_txt"
+            android:id="@+id/back"
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="5dp"
+            android:background="@drawable/back"
+            />
+        <Button
+            android:layout_width="60dp"
+            android:layout_height="35dp"
+            android:layout_alignRight="@+id/mypage_txt"
+            android:id="@+id/logout"
+            android:text="Logout"
+            android:layout_marginTop="7dp"
+            android:background="@drawable/logout"
+            android:textColor="#ffffff"
+            android:gravity="center_horizontal|center_vertical"
+          android:layout_marginRight="7dp"
+            android:layout_marginBottom="5dp"
+            android:textSize="10dp"
+            />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/mypage_txt"
+            android:layout_centerVertical="true"
+            android:layout_centerHorizontal="true"
+
+
+            android:gravity="center_horizontal|center_vertical"
+            android:text="MY PAGE"
+            android:textColor="#ffffffff"
+            android:textSize="24dp" />
+
+    </RelativeLayout>
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#ffffff"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
+        >
+
+
+
+
+        <Button
+            android:layout_width="60dp"
+            android:layout_height="15dp"
+            android:layout_gravity="right|top"
+            android:id="@+id/reserve_stat"
+            android:layout_toLeftOf="@+id/address"
+            android:background="@drawable/selected"
+            android:text="예약현황"
+
+            android:textColor="#000000"
+
+
+
+
+            android:textSize="10dp" />
+        <Button
+            android:layout_width="60dp"
+            android:layout_height="15dp"
+            android:layout_alignParentRight="true"
+            android:id="@+id/address"
+            android:textSize="10dp"
+            android:text="주소록"
+
+            android:textColor="#9d9de9"
+            android:background="@drawable/nonselect"/>
+
+    </RelativeLayout>
+
+<FrameLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/frameLayout">
+
+</FrameLayout>
+
+</LinearLayout>

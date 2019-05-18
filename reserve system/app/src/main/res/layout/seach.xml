@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@drawable/background"
+        android:orientation="horizontal">
+        <LinearLayout
+
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:layout_weight="4">
+            <Button
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:background="@drawable/mypage"
+                android:layout_gravity="center_horizontal|center_vertical"
+                android:padding="20dp"
+                android:layout_marginLeft="10dp"
+                android:id="@+id/mypage"
+                />
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_vertical|center_horizontal"
+            android:layout_marginLeft="10dp"
+            android:layout_weight="1"
+            android:paddingTop="10dp"
+            android:paddingRight="20dp"
+            android:text="스터디룸 예약시스템"
+            android:textColor="#ffffffff"
+            android:textSize="24dp" />
+
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:background="#ffffff"
+
+        >
+
+        <Button
+            android:id="@+id/today"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+          android:layout_centerInParent="true"
+            android:background="#ffffff"
+
+
+            android:text=""
+            android:textColor="#000000" />
+
+
+            <Button
+                android:layout_width="60dp"
+                android:layout_height="15dp"
+                android:layout_gravity="right|top"
+                android:layout_alignParentRight="true"
+                android:id="@+id/Freestudy"
+
+                android:background="@drawable/nonselect"
+                android:text="꽁터디룸"
+                android:textColor="#9d9de9"
+
+
+
+
+                android:textSize="10dp" />
+            <Button
+                android:layout_width="60dp"
+                android:layout_height="15dp"
+
+                android:layout_toLeftOf="@+id/Freestudy"
+                android:id="@+id/Study"
+                android:textSize="10dp"
+                android:text="스터디룸"
+                android:textColor="#000000"
+                android:background="@drawable/selected"/>
+
+        </RelativeLayout>
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/frameLayout2">
+
+    </FrameLayout>
+
+
+
+</LinearLayout>
