@@ -49,10 +49,6 @@ public class ActReserveActivity extends FragmentActivity {
 
     private void processIntent(Intent intent)
     {
-        String myid  = intent.getExtras().getString("StudtRoom_name") +" " + intent.getExtras().getString("StudtRoom_num")+" "+ intent.getExtras().getString("StudtRoom_time");
-        Reserve_StudtRoom_name.setText(intent.getExtras().getString("StudtRoom_name"));
-        Reserve_StudtRoom_num.setText(intent.getExtras().getString("StudtRoom_num"));
-        Reserve_StudtRoom_time.setText(intent.getExtras().getString("StudtRoom_time"));
 
     }
 }

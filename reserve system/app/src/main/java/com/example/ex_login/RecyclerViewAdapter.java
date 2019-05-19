@@ -1,5 +1,6 @@
 package com.example.ex_login;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.icu.lang.UScript;
 import android.support.annotation.NonNull;
@@ -31,6 +32,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     public void onBindViewHolder(@NonNull ItemViewHolder holder, int position) {
         // Item을 하나, 하나 보여주는(bind 되는) 함수입니다.
         holder.onBind(listData.get(position));
+
     }
 
     @Override
@@ -50,7 +52,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     }
     // RecyclerView의 핵심인 ViewHolder 입니다.
     // 여기서 subView를 setting 해줍니다.
-    class ItemViewHolder extends RecyclerView.ViewHolder {
+    class ItemViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
 
         private TextView textView1;
@@ -64,6 +66,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
         ItemViewHolder(View itemView) {
             super(itemView);
+            itemView.setOnClickListener(this);
 
             textView1 = itemView.findViewById(R.id.room_name);
             textView2 = itemView.findViewById(R.id.room_num);
@@ -100,6 +103,14 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
                     itemView.findViewById(R.id.tableV24),
             };
         }
+        @Override
+        public void onClick(View v) {
+
+            System.out.println(getPosition());
+            Intent intent = new Intent(v.getContext() , ActReserveActivity.class);
+            v.getContext().startActivity(intent);
+        }
+
 
         void onBind(study_list data) {
 
