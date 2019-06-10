@@ -1,0 +1,263 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@drawable/background"
+        >
+
+
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_centerHorizontal="true"
+
+
+            android:text="스터디룸 예약시스템"
+            android:textColor="#ffffffff"
+            android:textSize="24dp"
+            />
+
+    </RelativeLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:text="스터디룸 정보"
+        android:textColor="#000000"
+        android:gravity="center_vertical|center_horizontal"
+        android:background="@drawable/layer_draw2"
+        />
+    <RelativeLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="110dp"
+        android:orientation="vertical"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/Act_reserve_roomnum"
+            android:textColor="#000000"
+            android:paddingTop="5dp"
+            android:text="1"
+            android:paddingLeft="5dp"
+            android:layout_marginLeft="5dp"
+
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/Act_reserve_roomname"
+            android:layout_toRightOf="@+id/Act_reserve_roomnum"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"
+            android:textColor="#000000"
+            android:textSize="15dp"
+            android:text="name"
+            android:layout_marginLeft="8dp"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/Act_reserve_roomtime"
+            android:textColor="#000000"
+
+
+            android:layout_below="@+id/Act_reserve_roomname"
+            android:layout_alignLeft="@+id/Act_reserve_roomname"
+            android:textSize="12dp"
+
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/Act_reserve_people"
+            android:layout_alignParentRight="true"
+            android:layout_above="@+id/select_studylayout"
+            android:layout_marginBottom="10dp"
+            android:layout_marginRight="8dp"
+            android:text="3~4"
+            />
+
+
+
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:id="@+id/select_studylayout"
+            android:layout_below="@+id/Act_reserve_roomtime"
+            android:layout_marginTop="-5dp"
+            android:orientation="horizontal"
+            android:gravity="center_vertical|center_horizontal"
+
+            >
+
+            <HorizontalScrollView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#ffffff"
+                android:orientation="horizontal"
+                android:layout_below="@id/room_time"
+                android:layout_marginTop="10dp"
+                android:paddingLeft="7dp"
+                android:paddingRight="7dp"
+                android:id="@+id/timescroll"
+                >
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical|center_horizontal"
+                    android:orientation="horizontal"
+                    android:background="#ffffff"
+                    android:paddingLeft="7dp"
+                    android:paddingRight="7dp"
+                    android:id="@+id/timetable"
+                    >
+                </LinearLayout>
+            </HorizontalScrollView>
+
+
+
+        </LinearLayout>
+    </RelativeLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_weight="1">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:background="@drawable/layer_draw2">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="동반이용자(본인 제외)"
+                android:textColor="#000000"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:gravity="center_horizontal|center_vertical"
+                android:id="@+id/textpartner"
+                />
+            <ImageButton
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:background="@drawable/adressbook"
+                android:layout_marginLeft="20dp"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:id="@+id/addressbtn"
+                />
+            <ImageButton
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_toLeftOf="@+id/minus_partner"
+                android:background="@drawable/plus"
+                android:layout_centerVertical="true"
+                android:id="@+id/plus_partner"
+
+                />
+            <ImageButton
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:background="@drawable/minus"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:id="@+id/minus_partner"
+                android:layout_marginRight="20dp"
+                android:layout_marginLeft="10dp"
+                />
+
+        </RelativeLayout>
+
+        <ListView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+
+            android:id="@+id/parnerView"
+            >
+
+        </ListView>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:orientation="horizontal"
+
+        android:gravity="center"
+
+        >
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_weight="1"
+            android:text="사용목적"
+            android:textColor="#000000"
+            android:gravity="center_vertical|center_horizontal"
+            android:background="@drawable/layer_draw2"
+
+            />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginTop="5dp"
+            android:orientation="horizontal"
+            android:gravity="center_horizontal|center_vertical"
+            android:layout_marginBottom="5dp"
+            android:background="@drawable/layer_full"
+            android:layout_weight="1"
+            >
+            <Spinner
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+
+                android:spinnerMode="dialog"
+                android:id="@+id/purpose_spinner"
+                android:layout_gravity="center"
+                android:gravity="center"
+                ></Spinner>
+        </LinearLayout>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+
+        android:orientation="horizontal"
+        android:gravity="center_horizontal|center_vertical"
+        android:layout_marginBottom="10dp"
+        >
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="예약"
+            android:layout_gravity="center_vertical|center_horizontal"
+            android:layout_marginRight="10dp"
+            android:id="@+id/Act_reserve_btn"
+            android:foreground="@drawable/reserve_act_btn"
+            />
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="취소"
+            android:id="@+id/Act_reserve_canclebtn"
+            android:layout_gravity="center_vertical|center_horizontal"
+            android:layout_marginLeft="10dp"
+            android:foreground="@drawable/reserve_cancle_btn"/>
+    </LinearLayout>
+
+
+
+</LinearLayout>

@@ -28,8 +28,8 @@ public class MainActivity extends AppCompatActivity {
     Date mDate;
     private BeaconManager beaconManager;
     private Region region;
-    private long starttime = 20190508162000L;
-    private long endttime = 20190508165000L;
+    private long starttime = 20190528011500L;
+    private long endttime = 20190528165000L;
     SimpleDateFormat mFormat = new SimpleDateFormat("yyyyMMddHHmmss");
     private boolean isConnected;
 
@@ -48,39 +48,39 @@ public class MainActivity extends AppCompatActivity {
         beaconManager = new BeaconManager(this);
 
 
+        //SystemRequirementsChecker.checkWithDefaultDialogs(this);
 // add this below:
-        SystemRequirementsChecker.checkWithDefaultDialogs(this);
-
-        beaconManager.setRangingListener(new BeaconManager.RangingListener() {
-            @SuppressLint("SetTextI18n")
-            @Override
-            public void onBeaconsDiscovered(Region region, List<Beacon> list) {
-                if (!list.isEmpty()) {
-                    Beacon nearestBeacon = list.get(0);
-                    Log.d("Airport", "Nearest places: " + nearestBeacon.getRssi());
-
-                    // nearestBeacon.getRssi() : 비콘의 수신 강도
-                    tvId.setText(nearestBeacon.getRssi() + "");
-
-                    if ( !isConnected && nearestBeacon.getRssi() > -70 ) {
-                        isConnected = true;
-
-
-                    }
-                    else if( nearestBeacon.getRssi() < -70 ){
-                        isConnected = false;
-
-                    }
-                }
-
-            }
-        });
+        region = new Region("ranged region",
+                UUID.fromString("e2c56db5-dffb-48d2-b060-d0f5a71096e0"), 30001, 24424); // 본인이 연결할 Beacon의 ID와 Major / Minor Code를 알아야 한다.
 
 
         btt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
+
+                beaconManager.setRangingListener(new BeaconManager.RangingListener() {
+                    @SuppressLint("SetTextI18n")
+                    @Override
+                    public void onBeaconsDiscovered(Region region, List<Beacon> list) {
+                        if (!list.isEmpty()) {
+                            Beacon nearestBeacon = list.get(0);
+                            Log.d("Airport", "Nearest places: " + nearestBeacon.getRssi());
+
+                            // nearestBeacon.getRssi() : 비콘의 수신 강도
+                            tvId.setText(nearestBeacon.getRssi() + "");
+
+                            if ( !isConnected && nearestBeacon.getRssi() > -70 ) {
+                                isConnected = true;
+
+                            }
+                            else if( nearestBeacon.getRssi() < -70 ){
+                                isConnected = false;
+
+                            }
+                        }
+                    }
+                });
 
                 testtv.setText(getTime());
                 if(starttime < Long.parseLong(getTime()) && Long.parseLong(getTime()) < endttime)
@@ -95,6 +95,7 @@ public class MainActivity extends AppCompatActivity {
 
                                     }
                                 }).create().show();
+                        onPause();
                         btt.setEnabled(false);
                     } else {
                         Toast.makeText(MainActivity.this, "신호가 잡히지 않습니다.", Toast.LENGTH_SHORT).show();
@@ -108,8 +109,6 @@ public class MainActivity extends AppCompatActivity {
 
         });
 
-        region = new Region("ranged region",
-                UUID.fromString("e2c56db5-dffb-48d2-b060-d0f5a71096e0"), 30001, 24424); // 본인이 연결할 Beacon의 ID와 Major / Minor Code를 알아야 한다.
 
 
     }
@@ -141,4 +140,3 @@ public class MainActivity extends AppCompatActivity {
         super.onPause();
     }
 }
-

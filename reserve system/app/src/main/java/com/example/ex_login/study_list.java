@@ -17,9 +17,6 @@ public class study_list {
 
     private ArrayList<String> reserveL = new ArrayList<String>();
 
-
-
-
     public void setName(String name) {
         this.name = name;
     }
@@ -32,10 +29,7 @@ public class study_list {
         this.num = num;
     }
     public void setPeople(String people) { this.people = people;}
-    public void setReserveL (String a)
-    {
-        this.reserveL.add(a);
-    }
+    public void setReserveL (String a) { this.reserveL.add(a); }
 
     public String getPeople() { return  people;}
     public int getTimestart(){

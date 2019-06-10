@@ -15,6 +15,7 @@ public class ActReserveActivity extends FragmentActivity {
         TextView Reserve_StudtRoom_time;
         Button Reserve_Act_btn;
         Button Reserve_cancle_btn;
+
     public void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
@@ -32,11 +33,8 @@ public class ActReserveActivity extends FragmentActivity {
 
                 // 여기다 예약하면된다.
 
-
             }
         });
-
-
 
         Reserve_cancle_btn.setOnClickListener(new View.OnClickListener() {
             @Override

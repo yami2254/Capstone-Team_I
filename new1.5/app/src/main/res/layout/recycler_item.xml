@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="100dp"
+    android:background="@drawable/layer_draw">
+    <TextView
+        android:id="@+id/room_num"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingLeft="5dp"
+        android:paddingTop="5dp"
+        android:text="1"
+        android:textSize="15dp"
+        android:textColor="#000000"
+
+        />
+    <TextView
+        android:id="@+id/room_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:layout_toRightOf="@+id/room_num"
+        android:layout_alignParentRight="true"
+        android:paddingLeft="5dp"
+        android:paddingTop="5dp"
+        android:text="name"
+        android:textColor="#000000"
+        android:textSize="15dp" />
+
+    <TextView
+        android:id="@+id/room_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/room_name"
+
+        android:layout_marginLeft="20dp"
+
+        android:layout_marginTop="3dp"
+        android:text="10:00 ~ 00:00"
+        android:textColor="#000000"
+        android:textSize="12dp" />
+
+
+    <TextView
+        android:id="@+id/textpeople"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/timescroll"
+
+       android:layout_alignParentRight="true"
+        android:text="TextView"
+
+        android:layout_marginRight="8dp"/>
+
+    <HorizontalScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#ffffff"
+        android:orientation="horizontal"
+        android:layout_below="@id/room_time"
+        android:layout_marginTop="10dp"
+        android:paddingLeft="7dp"
+        android:paddingRight="7dp"
+        android:id="@+id/timescroll"
+        >
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical|center_horizontal"
+            android:orientation="horizontal"
+            android:background="#ffffff"
+            android:paddingLeft="7dp"
+            android:paddingRight="7dp"
+            android:id="@+id/timetable"
+            >
+        </LinearLayout>
+    </HorizontalScrollView>
+
+
+</RelativeLayout>
