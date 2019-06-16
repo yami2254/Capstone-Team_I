@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="10dp"
+    android:background="@drawable/background" >
+
+
+
+    <TextView
+        android:id="@+id/titleLabel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_above="@+id/login"
+        android:gravity="center_horizontal"
+        android:text="학술정보원 예약 시스템"
+        android:textColor="#ffffffff"
+        android:textStyle="bold"
+        android:textSize="24dp"
+        android:paddingBottom="40dp"
+        />
+
+    <ImageView
+
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/titleLabel"
+        android:layout_centerHorizontal="true"
+        android:layout_marginLeft="130dp"
+
+        android:layout_marginRight="130dp"
+        android:layout_marginBottom="3dp"
+        android:background="@drawable/school"
+
+
+
+        />
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:padding="10dp"
+        android:background="#afffffff"
+        android:id="@+id/login"
+        >
+        <TextView
+            android:id="@+id/usernameLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingTop="4dp"
+            android:text="Username : "
+            android:textColor="#ff222222"
+            android:textSize="18dp"
+            />
+        <EditText
+            android:id="@+id/usernameEntry"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/usernameLabel"
+            android:layout_alignBaseline="@id/usernameLabel"
+            android:layout_marginLeft="4dp"
+            />
+
+        <TextView
+            android:id="@+id/passwordLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingTop="16dp"
+            android:layout_below="@id/usernameLabel"
+            android:text="Password  : "
+            android:textColor="#ff222222"
+            android:textSize="18dp"
+            />
+        <EditText
+            android:id="@+id/passwordEntry"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="50dp"
+            android:layout_marginLeft="4dp"
+            android:layout_toRightOf="@id/passwordLabel"
+            android:layout_alignBaseline="@id/passwordLabel"
+            android:inputType="textPassword"
+
+            />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_below="@id/passwordLabel"
+            >
+
+            <CheckBox
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="16dp"
+                android:id="@+id/checkbox1"
+                android:layout_toRightOf="@+id/loginBtn"
+                android:layout_alignBaseline="@id/loginBtn"
+                android:text="자동로그인"
+                />
+            <Button
+                android:id="@+id/loginBtn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="16dp"
+                android:text="Login"
+                android:drawable="@drawable/ok_btn"
+                android:onClick="login_success"
+                />
+        </LinearLayout>
+    </RelativeLayout>
+
+</RelativeLayout>
