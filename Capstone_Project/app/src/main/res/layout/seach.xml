@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@drawable/background"
+        >
+
+        <Button
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="@drawable/mypage"
+            android:layout_centerVertical="true"
+            android:padding="10dp"
+            android:layout_marginLeft="10dp"
+            android:id="@+id/mypage"
+            />
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_centerHorizontal="true"
+
+
+            android:text="스터디룸 예약시스템"
+            android:textColor="#ffffffff"
+            android:textSize="24dp"
+            />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:background="#ffffff"
+
+        >
+
+        <Button
+            android:id="@+id/today"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+          android:layout_centerInParent="true"
+            android:background="#ffffff"
+
+
+            android:text=""
+            android:textColor="#000000" />
+
+
+            <Button
+                android:layout_width="60dp"
+                android:layout_height="15dp"
+                android:layout_gravity="right|top"
+                android:layout_alignParentRight="true"
+                android:id="@+id/Freestudy"
+
+                android:background="@drawable/nonselect"
+                android:text="꽁터디룸"
+                android:textColor="#9d9de9"
+
+
+
+
+                android:textSize="10dp" />
+            <Button
+                android:layout_width="60dp"
+                android:layout_height="15dp"
+
+                android:layout_toLeftOf="@+id/Freestudy"
+                android:id="@+id/Study"
+                android:textSize="10dp"
+                android:text="스터디룸"
+                android:textColor="#ffffff"
+                android:background="@drawable/selected"/>
+
+        </RelativeLayout>
+    <android.support.v4.view.ViewPager
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/viewpager1"
+        >
+
+
+
+    </android.support.v4.view.ViewPager>
+
+</LinearLayout>

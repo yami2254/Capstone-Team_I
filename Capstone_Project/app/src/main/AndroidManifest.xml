@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.example.ex_login">
+
+    <application
+        android:name=".MyApplication"
+        android:allowBackup="true"
+        android:icon="@drawable/school3"
+        android:label="학술정보원 예약시스템"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.AppCompat.Light"
+
+        >
+        <activity android:name=".MainActivity">
+
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+
+
+        </activity>
+        <activity
+            android:name= ".beacon"
+            android:theme="@style/Theme.AppCompat.Transparent"
+            >
+        </activity>
+        <activity
+            android:name= ".cancel"
+            android:theme="@style/Theme.AppCompat.Transparent"
+            >
+        </activity>
+        <activity android:name= ".SearchActivity"
+
+            ></activity>
+
+        <activity android:name=".Sub_CalendarActivity"
+            android:theme="@style/Theme.AppCompat.DayNight.Dialog.Alert"
+            ></activity>
+     <activity android:name=".AddressbookActivity"
+         android:theme="@style/Theme.AppCompat.DayNight.Dialog.Alert"
+         ></activity>
+
+        <activity android:name=".MypageActivity"
+            android:windowSoftInputMode="adjustPan"
+
+            ></activity>
+        <activity android:name=".ActReserveActivity"
+            android:windowSoftInputMode="adjustPan"
+            ></activity>
+
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_channel_id"
+            android:value="@string/default_notification_channel_id" />
+
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_icon"
+            android:resource="@drawable/ic_launcher_background" />
+
+        <service
+            android:name=".MyFirebaseMessagingService"
+            android:exported="false"
+            android:stopWithTask="false">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+                <action android:name="com.google.firebase.INSTANCE_ID_EVENT" />
+            </intent-filter>
+        </service>
+
+
+    </application>
+    <uses-permission android:name="android.permission.INTERNET"></uses-permission>
+</manifest>
